@@ -116,6 +116,7 @@ callButton.onclick = async () => {
 
 // 3. Answer the call with the unique ID
 answerButton.onclick = async () => {
+  console.log("pressed")
   const callId = callInput.value;
   const callDoc = firestore.collection('calls').doc(callId);
   const answerCandidates = callDoc.collection('answerCandidates');
@@ -126,7 +127,7 @@ answerButton.onclick = async () => {
   };
 
   const callData = (await callDoc.get()).data();
-
+  console.log(callData);
   const offerDescription = callData.offer;
   await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
 
